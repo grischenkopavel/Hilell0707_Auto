@@ -3,8 +3,11 @@ Created by Pavel Gryshchenko on 26.09.2022
 */
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.Message;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -20,6 +23,23 @@ public class MyFirstTestRun {
     }
     @Test
     public void firstRun(){
-        driver.get("https://www.google.com.ua/");
+        driver.get("https://rozetka.com.ua");
+        WebElement logoXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/a/picture/img"));
+        System.out.println(logoXpath.toString());
+        WebElement logoCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > a > picture > img"));
+        System.out.println(logoCss.getSize());
+
+        WebElement searchBtnXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/div/form/button"));
+        System.out.println(searchBtnXpath.getSize());
+        WebElement searchBtnCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > div > form > button"));
+        System.out.println(searchBtnCss.getSize());
+
+        WebElement userProfileBtnXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/ul/li[3]/rz-user/button"));
+        System.out.println(userProfileBtnXpath.getSize());
+        WebElement userProfileBtnCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > ul > li.header-actions__item.header-actions__item--user > rz-user > button"));
+        System.out.println(userProfileBtnCss.getSize());
+
+
+        driver.quit();
     }
 }
