@@ -24,12 +24,13 @@ public class MyFirstTestRun {
     @Test
     public void firstRun(){
         driver.get("https://rozetka.com.ua");
-        WebElement logoXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/a/picture/img"));
+        WebElement logoXpath = driver.findElement(By.xpath("//img[@alt='Rozetka Logo']"));
         System.out.println(logoXpath.toString());
         WebElement logoCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > a > picture > img"));
         System.out.println(logoCss.getSize());
 
-        WebElement searchBtnXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/div/form/button"));
+        WebElement searchBtnXpath = driver.findElement(By.xpath("//button[@class='button button_color_green button_size_medium search-form__submit ng-star-inserted']"));
+        WebElement searchBtnXpath2 = driver.findElement(By.xpath("//button[@class='button button_color_green button_size_medium search-form__submit ng-star-inserted']"));
         System.out.println(searchBtnXpath.getSize());
         WebElement searchBtnCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > div > form > button"));
         System.out.println(searchBtnCss.getSize());
