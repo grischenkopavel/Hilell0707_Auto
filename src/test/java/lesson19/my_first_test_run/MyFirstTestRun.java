@@ -25,19 +25,19 @@ public class MyFirstTestRun {
     public void firstRun(){
         driver.get("https://rozetka.com.ua");
         WebElement logoXpath = driver.findElement(By.xpath("//img[@alt='Rozetka Logo']"));
-        System.out.println(logoXpath.toString());
-        WebElement logoCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > a > picture > img"));
-        System.out.println(logoCss.getSize());
+        System.out.println(logoXpath.getSize());
+        WebElement logoCss = driver.findElement(By.cssSelector("img[alt='Rozetka Logo']"));
+        System.out.println(logoCss.isEnabled());
 
         WebElement searchBtnXpath = driver.findElement(By.xpath("//button[@class='button button_color_green button_size_medium search-form__submit ng-star-inserted']"));
-        WebElement searchBtnXpath2 = driver.findElement(By.xpath("//button[@class='button button_color_green button_size_medium search-form__submit ng-star-inserted']"));
+        WebElement searchBtnXpath2 = driver.findElement(By.xpath("//button[contains(@class, 'button_color_green')]"));
         System.out.println(searchBtnXpath.getSize());
-        WebElement searchBtnCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > div > form > button"));
+        WebElement searchBtnCss = driver.findElement(By.cssSelector("button[class='button button_color_green button_size_medium search-form__submit ng-star-inserted']"));
         System.out.println(searchBtnCss.getSize());
 
-        WebElement userProfileBtnXpath = driver.findElement(By.xpath("/html/body/app-root/div/div/rz-header/rz-main-header/header/div/div/ul/li[3]/rz-user/button"));
+        WebElement userProfileBtnXpath = driver.findElement(By.xpath("//rz-user/button[@class='header__button ng-star-inserted']"));
         System.out.println(userProfileBtnXpath.getSize());
-        WebElement userProfileBtnCss = driver.findElement(By.cssSelector("body > app-root > div > div > rz-header > rz-main-header > header > div > div > ul > li.header-actions__item.header-actions__item--user > rz-user > button"));
+        WebElement userProfileBtnCss = driver.findElement(By.cssSelector("svg use[href='#icon-user-simple']"));
         System.out.println(userProfileBtnCss.getSize());
 
 
