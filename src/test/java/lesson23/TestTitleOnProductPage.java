@@ -1,5 +1,5 @@
-package lesson22;/*
-Created by Pavel Gryshchenko on 06.10.2022
+package lesson23;/*
+Created by Pavel Gryshchenko on 13.10.2022
 */
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -11,13 +11,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class  RozetkaSimpleTest {
+public class TestTitleOnProductPage {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
     private final String EXPECTED_TITLE = "Комп'ютер Apple Mac Studio M1 Ultra/48 ядер GPU/64GB/1TB";
@@ -31,7 +30,7 @@ public class  RozetkaSimpleTest {
         driver.manage().window().maximize();
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ROZETKA_URL);
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     @Test
     void RozetkaTest()
@@ -47,7 +46,12 @@ public class  RozetkaSimpleTest {
 
         String firstProductTitle = firstProduct.getText().trim();
 
-        Assert.assertEquals(firstProductTitle, EXPECTED_TITLE, "title doe's not equal to Mac");
+        firstProduct.click();
+        WebElement productPageTitle = driver.findElement(By.xpath("//h1[@class='product__title']"));
+        String productPageTitleText = productPageTitle.getAttribute("innerText").trim();
+
+        Assert.assertEquals(firstProductTitle, productPageTitleText, "not equals");
+
     }
     @AfterTest
     void afterTest(){
