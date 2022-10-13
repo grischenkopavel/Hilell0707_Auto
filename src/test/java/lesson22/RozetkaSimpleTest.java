@@ -39,11 +39,11 @@ public class RozetkaSimpleTest {
         WebElement searchInput = driver.findElement(By.name("search"));
         searchInput.sendKeys("Mac");
 
-        WebElement btnSearch = driver.findElement(By.xpath("//button[contains(@class, \"button_color_green\")]"));
+        WebElement btnSearch = driver.findElement(By.xpath("//button[contains(@class, 'button_color_green')]"));
         btnSearch.click();
 
         WebElement firstProduct = wait.
-                until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class=\"goods-tile__title\"]")));
+                until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='goods-tile__title']")));
 
         String firstProductTitle = firstProduct.getText().trim();
 

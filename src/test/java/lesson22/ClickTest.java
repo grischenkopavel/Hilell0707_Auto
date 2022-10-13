@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class ClickTest {
+ class ClickTest {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
 
@@ -25,9 +25,9 @@ public class ClickTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
-    @Test
-    void googleClickTestImplicitlyWait() {
-
+    @Test (groups = "Broken")
+     void googleClickTestImplicitlyWait() {
+        //ImplicitlyWait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.get(ROZETKA_URL);
@@ -39,6 +39,7 @@ public class ClickTest {
     void googleClickTest() {
 
         driver.get(ROZETKA_URL);
+        //wait
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until (ExpectedConditions.elementToBeClickable(By.xpath("//button[@class = 'header__button ng-star-inserted']")) );
 
