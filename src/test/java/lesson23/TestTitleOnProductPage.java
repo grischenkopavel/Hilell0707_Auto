@@ -19,7 +19,6 @@ import java.time.Duration;
 public class TestTitleOnProductPage {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
-    private final String EXPECTED_TITLE = "Комп'ютер Apple Mac Studio M1 Ultra/48 ядер GPU/64GB/1TB";
     private WebDriverWait wait;
 
     @BeforeTest
