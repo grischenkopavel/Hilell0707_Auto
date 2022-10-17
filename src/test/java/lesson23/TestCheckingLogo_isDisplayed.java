@@ -14,9 +14,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
-public class TestCheckingColorBy_CssValue {
+public class TestCheckingLogo_isDisplayed {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
     private WebDriverWait wait;
@@ -32,24 +35,18 @@ public class TestCheckingColorBy_CssValue {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     @Test
-    void RozetkaTest()
-    {
-        WebElement searchInput = driver.findElement(By.name("search"));
-        searchInput.sendKeys("Mac");
-
-        WebElement btnSearch = driver.findElement(By.xpath("//button[contains(@class, 'button_color_green')]"));
-        btnSearch.click();
-
-        WebElement firstProduct = wait.
-                until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='goods-tile__title']")));
-        firstProduct.click();
-
-        WebElement firstActiveTab = driver.findElement(By.xpath("//a[@class='tabs__link tabs__link--active']"));
-        String colorOfFirstActiveTab = firstActiveTab.getCssValue("color");
-
-        //System.out.println(colorOfFirstActiveTab); just to get String in RGBA
-
-        Assert.assertEquals(colorOfFirstActiveTab, "rgba(0, 160, 70, 1)", "Color of first active tab is not green");
+    void RozetkaTest() {
+        WebElement logo = driver.findElement(By.xpath("//a[@class='header__logo']"));
+        Assert.assertTrue(logo.isDisplayed(), "Logo doesn't appear");
+    }
+    @Test 
+    void RozetkaCheckLogo(){
+        List<WebElement> logoList = driver.findElements(By.xpath("//a[@class='header__logo']"));
+        if (logoList.size() >0){
+            System.out.println("Logo appeared");
+        }else {
+            Assert.fail("Logo doesn't appear");
+        }
     }
     @AfterTest
     void afterTest(){

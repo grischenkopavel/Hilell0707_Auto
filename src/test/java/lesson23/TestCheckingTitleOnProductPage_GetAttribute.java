@@ -16,10 +16,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TestChekingAvailableByMethod_isDisplayed {
+public class TestCheckingTitleOnProductPage_GetAttribute {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
-    private final String EXPECTED_TITLE = "Комп'ютер Apple Mac Studio M1 Ultra/48 ядер GPU/64GB/1TB";
     private WebDriverWait wait;
 
     @BeforeTest
@@ -44,16 +43,14 @@ public class TestChekingAvailableByMethod_isDisplayed {
         WebElement firstProduct = wait.
                 until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='goods-tile__title']")));
 
-        firstProduct.click();
+        String firstProductTitle = firstProduct.getText().trim();
 
+        firstProduct.click();
         WebElement productPageTitle = driver.findElement(By.xpath("//h1[@class='product__title']"));
-        WebElement productPrice = driver.findElement(By.xpath("//p[@class='product-prices__big']"));
         String productPageTitleText = productPageTitle.getAttribute("innerText").trim();
 
-        String price = productPrice.getText();
+        Assert.assertEquals(firstProductTitle, productPageTitleText, "not equals");
 
-        WebElement availibilityOfProduct = driver.findElement(By.cssSelector(""));
-        String availibilityofProductText = availibilityOfProduct.getCssValue("");
     }
     @AfterTest
     void afterTest(){

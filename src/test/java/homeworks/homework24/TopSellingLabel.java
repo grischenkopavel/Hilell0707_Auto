@@ -40,7 +40,7 @@ public class TopSellingLabel {
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     }
     @Test
-    void RozetkaTest() throws InterruptedException {
+    void RozetkaTest() {
         WebElement computersNotebooksLink =  wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//a[@class='menu-categories__link']")));
         computersNotebooksLink.click();
