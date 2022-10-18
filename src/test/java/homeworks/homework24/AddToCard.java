@@ -3,13 +3,13 @@ Created by Pavel Gryshchenko on 17.10.2022
 */
 /*
 Открыть https://rozetka.com.ua/
-Перейти в раздел «Компьютеры и ноутбуки» //XPath need to be short, use contain()
-Перейти в раздел « Ноутбуки» //XPath need to be short, use contain()
+Перейти в раздел «Компьютеры и ноутбуки» //XPath need to be short
+Перейти в раздел « Ноутбуки» //XPath need to be short
 Добавить первый товар в корзину
 Проверить что в корзину добавился один товар
 Перейти в корзину и проверить, что добавился правильный товар
 
-wait - no sense to use with each find???
+wait - no sense to use with each find??? my logic is use wait after each click() action to avoid element not found
  */
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -29,6 +29,7 @@ import java.time.Duration;
 public class AddToCard {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
+    private final String EXPECTED_NUMBER_OF_GOODS = "1";
     private WebDriverWait wait;
 
     @BeforeTest
@@ -63,7 +64,7 @@ public class AddToCard {
         String cardGoodsNumber = btnCard.getAttribute("innerText").trim();
         btnCard.click();
 
-        Assert.assertEquals(cardGoodsNumber, "1", "number of added goods doesn't match 1");
+        Assert.assertEquals(cardGoodsNumber, EXPECTED_NUMBER_OF_GOODS, "number of added goods doesn't match 1");
 
         WebElement card = wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//div[contains(@class, 'cart-product__main')]//a")));
