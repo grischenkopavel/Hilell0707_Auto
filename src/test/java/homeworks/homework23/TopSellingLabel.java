@@ -1,4 +1,4 @@
-package homeworks.homework24;/*
+package homeworks.homework23;/*
 Created by Pavel Gryshchenko on 06.10.2022
 */
 /*
@@ -18,13 +18,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TopSellingLabelUpdated {
+public class TopSellingLabel {
     private WebDriver driver;
     private final String ROZETKA_URL = "https://rozetka.com.ua/";
     private WebDriverWait wait;
@@ -40,7 +41,7 @@ public class TopSellingLabelUpdated {
     }
     @Test
     void RozetkaTest() {
-        WebElement computersNotebooksLink = driver.findElement(
+        WebElement computersNotebooksLink =  wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//a[@class='menu-categories__link']")));
         computersNotebooksLink.click();
 
@@ -52,29 +53,28 @@ public class TopSellingLabelUpdated {
                 (By.xpath("//a[@data-id='Rozetka']")));
         rozetkaSellerCheckbox.click();
 
-        WebElement label = wait.until(ExpectedConditions.elementToBeClickable
-                (By.xpath("//a[@class='catalog-selection__link']")));
+        WebElement rozetkaSellerCheckboxChecked = wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//a[@data-id='Rozetka' and @class='checkbox-filter__link checkbox-filter__link--checked']")));
 
         WebElement maxCost = wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//input[@class='slider-filter__input ng-untouched ng-pristine ng-valid' and @formcontrolname='max']")));
         maxCost.clear();
         maxCost.sendKeys("100000");
 
-        WebElement buttonOk =  wait.until(ExpectedConditions.elementToBeClickable
+        WebElement submitButton =  wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//button[@class='button button_color_gray button_size_small slider-filter__button' and @type='submit']")));
-        buttonOk.click();
+        submitButton.click();
 
-//
-//        WebElement firstProductWithTopSellingLabel =  wait.until(ExpectedConditions.elementToBeClickable
-//                (By.xpath("//span[@class='goods-tile__label promo-label promo-label_type_popularity ng-star-inserted']//parent::div//child::a[2]")));
-//
-//        //Thread.sleep(5000);
-//        firstProductWithTopSellingLabel.click();
-//
-//
-//        WebElement topSellingLabel =  wait.until(ExpectedConditions.elementToBeClickable
-//                (By.xpath("//span[@class='promo-label_type_popularity promo-label promo-label--large ng-star-inserted']")));
-//        Assert.assertTrue(topSellingLabel.isDisplayed(), "Top selling label do not exist");
+        WebElement firstProductWithTopSellingLabel =  wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//span[@class='goods-tile__label promo-label promo-label_type_popularity ng-star-inserted']//parent::div//child::a[2]")));
+
+        //Thread.sleep(5000);
+        firstProductWithTopSellingLabel.click();
+
+
+        WebElement topSellingLabel =  wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//span[@class='promo-label_type_popularity promo-label promo-label--large ng-star-inserted']")));
+        Assert.assertTrue(topSellingLabel.isDisplayed(), "Top selling label do not exist");
     }
     @AfterTest
     void afterTest(){
