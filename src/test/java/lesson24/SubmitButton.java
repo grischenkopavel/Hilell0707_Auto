@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,24 +21,33 @@ public class SubmitButton {
     private WebDriverWait wait;
 
     @BeforeTest
-    public void setUpTest()
-    {
+    public void setUpTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(GOOGLE_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+
     @Test
-    public void submitTest(){
+    public void submitTest() {
+
+        WebElement btnAcceptCookie = driver.findElement(By.id("L2AGLb"));
+        btnAcceptCookie.click();
+
         WebElement inputSearch = driver.findElement(By.name("q"));
         inputSearch.sendKeys("QA");
 
         WebElement btnSearch = driver.findElement(By.name("btnK"));
-        if(btnSearch.getAttribute("value").equals("Поиск в Google") ){
+        if (btnSearch.getAttribute("value").equals("Поиск в Google")) {
             btnSearch.submit();
-        }else {
+        } else {
             Assert.fail();
         }
+    }
+
+    @AfterTest
+    void afterTest() {
+        driver.quit();
     }
 }
