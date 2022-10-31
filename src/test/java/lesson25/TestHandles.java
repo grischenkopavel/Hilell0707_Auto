@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -25,7 +26,6 @@ public class TestHandles {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ROZETKA_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -35,7 +35,8 @@ public class TestHandles {
         WebElement login = driver.findElement(By.xpath("//li[contains(@class, '--user')]"));
         login.click();
 
-        WebElement reg = driver.findElement(By.xpath("//button[contains(@class, 'register-link')]"));
+
+        WebElement reg = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'register-link')]")));
         reg.click();
 
         WebElement privatePolicy = driver.findElement(By.xpath("//a[contains(@class, 'button--link')]"));
