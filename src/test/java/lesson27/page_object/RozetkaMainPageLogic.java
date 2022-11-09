@@ -12,7 +12,7 @@ public class RozetkaMainPageLogic {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public RozetkaMainPageLogic(WebDriver driver, WebDriverWait wait) {
+    RozetkaMainPageLogic(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }

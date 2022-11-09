@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductPageLogic {
+class ProductPageLogic {
     By productTitle = By.xpath("//h1[@class='product__title']");
     private WebDriver driver;
     private WebDriverWait wait;

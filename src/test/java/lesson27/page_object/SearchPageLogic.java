@@ -12,7 +12,7 @@ public class SearchPageLogic {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public SearchPageLogic(WebDriver driver, WebDriverWait wait) {
+    SearchPageLogic(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }

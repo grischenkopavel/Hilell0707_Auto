@@ -28,7 +28,7 @@ public class PageObjectTest {
     }
 
     @Test
-    public void rozetkaTest() {
+    void rozetkaTest() {
         new RozetkaMainPageLogic(driver, wait).
                 typeTextToSearchInput("Mac").
                 clickFindBtn();
