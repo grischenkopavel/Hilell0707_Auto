@@ -12,7 +12,6 @@ Created by Pavel Gryshchenko on 08.11.2022
  */
 
 import com.codeborne.selenide.Configuration;
-import lesson29.page_object_selenide.CardPageLogic;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

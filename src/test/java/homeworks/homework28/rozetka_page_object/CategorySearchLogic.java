@@ -4,7 +4,6 @@ Created by Pavel Gryshchenko on 08.11.2022
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import lesson29.page_object_selenide.CardPageLogic;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;

@@ -1,4 +1,4 @@
-package lesson29.page_object_selenide;/*
+package homeworks.homework28.rozetka_page_object;/*
 Created by Pavel Gryshchenko on 09.11.2022
 */
 
